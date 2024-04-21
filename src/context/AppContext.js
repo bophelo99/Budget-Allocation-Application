@@ -97,7 +97,7 @@ const initialState = {
     ],
     currency: [
         {id:"Dollar", name:'Dollar', symbol:'$'},
-        {id:"Pound", name:'Pound', symbol:'£'},'£'
+        {id:"Pound", name:'Pound', symbol:'£'},
         {id:"Euro", name:'Euro', symbol:'€'},
         {id:"Ruppee", name:'Ruppee', symbol:'₹'},
     ]
