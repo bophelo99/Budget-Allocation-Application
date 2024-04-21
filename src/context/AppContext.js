@@ -55,14 +55,23 @@ export const AppReducer = (state, action) => {
             action.type = "DONE";
             return {
                 ...state,
-                budget
             };
         case 'SET_BUDGET':
+            const totalExpenses = state.expenses.reduce((total, item) => {
+                return (total += item.cost);
+            }, 0);
+            if(totalExpenses>action.payload){
+                alert("You cannot reduce the budget value lower than spending");
+                return {
+                    ...state
+                }
+            } else{
             action.type = "DONE";
-            state.budget = action.payload;
+            state.budget = action.payload}
 
             return {
                 ...state,
+                budget
             };
         case 'CHG_CURRENCY':
             action.type = "DONE";
@@ -78,7 +87,7 @@ export const AppReducer = (state, action) => {
 
 // 1. Sets the initial state when the app loads
 const initialState = {
-    budget: 2000,
+    budget: 20000,
     expenses: [
         { id: "Marketing", name: 'Marketing', cost: 50 },
         { id: "Finance", name: 'Finance', cost: 300 },
@@ -86,7 +95,12 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
     ],
-    currency: '£'
+    currency: [
+        {id:"Dollar", name:'Dollar', symbol:'$'},
+        {id:"Pound", name:'Pound', symbol:'£'},'£'
+        {id:"Euro", name:'Euro', symbol:'€'},
+        {id:"Ruppee", name:'Ruppee', symbol:'₹'},
+    ]
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
